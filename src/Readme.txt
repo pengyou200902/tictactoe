@@ -3,27 +3,53 @@ Email: youpeng@bu.edu
 BU ID: U82384393
 
 Execution:
+
     javac Main.java && java Main
     OR
     Run the main function in Main.java in the IDE such as IntelliJ IDEA.
 
 Class Descriptions:
-    class games.entities.Board: The TTTBoard of the Tic Tac Toe game with fixed size 3x3 (classical Tic Tac Toe).
 
-    class games.tictactoe.TTTPlayer: The TTTPlayer class which has a name and a chess type.
+    interface BoardInterface: Set the common functions for a game board.
 
-    class games.tictactoe.TicTacToe: The game class which contains some logics and rules of the game such as checkWin.
+    interface GameInterface: Set the common logics for a game.
 
-    class Main: The class that can run a Tic Tac Toe game.
+    interface PlayerInterface: Set the abilities for players such as move().
+
+    interface Winnable: A winnable Game should have a checkWin interface.
+
+    class BaseBoard: Store/Share the limits for board size.
+
+    class BaseGame: For future use for scalability. Currently, it's empty.
+
+    class Board: The board of the Tic Tac Toe and Orders and Chaos, min(3x3) max(15x15).
+
+    class GameHelper: The class for choosing a game and launching a game, etc.
+
+    class Main: The main entrance.
+
+    class Mark: Stores info about a mark/piece.
+
+    class OACPlayer: Player for Orders and Chaos. Different from TTTPlayer when creating.It implements PlayerInterface.
+
+    class OrdersAndChaos: Stores the game logic and implements GameInterface.
+
+    class TicTacToe: The game class which contains some logics and rules of the game such as checkWin.
+
+    class TTTPlayer: Player for Tic Tac Toe.
 
 Extra Info:
-    1. In class games.tictactoe.TTTPlayer, I implemented a private constructor. To instantiate TTTPlayer objects for Tic Tac Toe game,
-    we should call a static function named createPlayers(). This was designed to avoid creating a wrong number of
-    TTTPlayers by mistake.
 
-    2. The TTTPlayers can set their names(empty and same names are not allowed). They can try to input again if they
+    0. Use a Scalable interface to indicate a board can have different sizes. And use a Winnable interface to indicate
+    that a game has a winner so we must implement checkWin().
+
+    1. In class TTTPlayer and OACPlayer, I implemented a private constructor. To instantiate XXXPlayer[] objects
+    for both games, we should call a static function named createPlayers(). This was designed to avoid creating a wrong
+    number of players by mistake.
+
+    2. The XXXPlayer can set their names(empty and same names are not allowed). They can try to input again if they
     enter invalid names at the beginning.
 
-    3. If TTTPlayers set their pieces onto invalid positions, the program will ask them to try again.
+    3. If XXXPlayer set their pieces onto invalid positions, the program will ask them to try again.
 
     4. When one game ends, users can choose whether to start a new game.
